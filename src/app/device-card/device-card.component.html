@@ -1,0 +1,7 @@
+<div class="cardContainer">
+    <div *ngFor="let card of currentCard" class="card">
+        <div class="img"><img [src]="card.src" alt="no"></div>
+          <h2>{{ card.title }}</h2>
+          <p>{{ card.description }}</p>
+    </div>
+</div>
