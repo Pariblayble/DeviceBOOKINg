@@ -1,47 +1,47 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-
-export interface IUser{
-    id: number,
-    name: string,
-    secondName: string,
-    email: string,
-    password: string
-}
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
-    public loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.pattern('[\w.]+@\w+\.(?:com|ru|org|ua|net|by|edu|info)')]),
-      password: new FormControl('', Validators.required)
-    })
-  
-  constructor(private _http: HttpClient, private _router: Router) { }
+  public loginForm!: FormGroup;
+  private returnUrl!: string;
+
+  constructor(
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _authService: AuthService
+  ) {
+    if (this._authService.currentUserValue) {
+      this._router.navigate(['devices']);
+    }
+  }
 
   ngOnInit(): void {
-    
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required),
+    });
+
+    this.returnUrl =
+      this._route.snapshot.queryParams['returnUrl'] || '/devices';
   }
 
   public onSubmit() {
-    this._http.get<IUser[]>("http://localhost:3000/users")
-    .subscribe((x: IUser[]) => {
-        const user: IUser | undefined = x.find((a: IUser) => {
-            return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password;
-        });
-        if (user) {
-            this._router.navigate(['hui/' + user.id]);
-        } else {
-            alert('user not found');
-        }
-    }, () => {
-        alert('Error');
-    });
+    this._authService
+      .logIn(this.loginForm.value.email, this.loginForm.value.password)
+      .pipe(first())
+      .subscribe(
+        (data) => {
+          this._router.navigate([this.returnUrl]);
+        },
+        (error) => {}
+      );
   }
-
 }
