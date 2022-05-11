@@ -11,15 +11,18 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { PersonalAreaComponent } from './personal-area/personal-area.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [AppComponent, DeviceCardComponent, AuthComponent, NavMenuComponent],
+  declarations: [AppComponent, DeviceCardComponent, AuthComponent, NavMenuComponent, PersonalAreaComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

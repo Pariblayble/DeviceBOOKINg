@@ -9,17 +9,4 @@ import { User } from './interfaces/interfaces';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    public currentUser!: User | null;
-
-    constructor (
-        private router: Router,
-        private authService: AuthService 
-    ) {
-        this.authService.currentUser.subscribe(x => this.currentUser = x);
-    }
-
-    logout() {
-        this.authService.logOut();
-        this.router.navigate(["/login"]);
-    }
 }

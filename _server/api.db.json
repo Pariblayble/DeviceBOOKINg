@@ -1,33 +1,95 @@
 {
-    "users": [
-      {
-          "id": 1,
-          "name": "Ксения",
-          "secondName": "Сонина",
-          "email": "gena.chid@mail.ru",
-          "password": "krasivieGlaza"
+  "users": [
+    {
+      "id": 1,
+      "name": "Ксения",
+      "secondName": "Сонина",
+      "email": "gena.chid@mail.ru",
+      "password": "krasivieGlaza"
+    },
+    {
+      "id": 2,
+      "email": "gena.chid1@mail.ru",
+      "password": "krasivieGlaza"
+    },
+    {
+      "id": 3,
+      "email": "gena.chi123d1@mail.ru",
+      "password": "krasivieGlaza"
+    }
+  ],
+  "devices": [
+    {
+      "title": "IPhone 15",
+      "src": "https://img.mvideo.ru/Pdb/small_pic/480/30052942b.jpg",
+      "description": "Смартфон Apple iPhone 15 228GB с новой комплектацией черный",
+      "id": 1,
+      "isBooked": false,
+      "bookData": {
+        "id": -1,
+        "fromDate": null,
+        "toDate": null,
+        "needCharge": false,
+        "comments": ""
       }
-    ],
-    "devices": [
-      {
-          "title": "IPhone 11",
-          "src": "/assets/iphone_11.png",
-          "description": "Смартфон Apple iPhone 11 128GB с новой комплектацией черный"
-      },
-      {
-          "title": "Honor 50",
-          "src": "/assets/HONOR.jpg",
-          "description": "Смартфон Honor 50 6/128GB изумрудно-зеленый"
-      },
-      {
-          "title": "Samsung Galaxy Z",
-          "src": "/assets/SAMSUNG.jpg",
-          "description": "Samsung Galaxy Z Flip3 5G 8/128GB (бежевый)"
-      },
-      {
-          "title": "IPhone 11",
-          "src": "/assets/Xiaomi.jpg",
-          "description": "Xiaomi Redmi Note 11 4/128GB (серый графит)"
+    },
+    {
+      "id": 2,
+      "title": "Honor 50",
+      "src": "https://img.mvideo.ru/Pdb/small_pic/480/30059410b.jpg",
+      "description": "Смартфон Honor 50 6/128GB изумрудно-зеленый",
+      "isBooked": true,
+      "bookData": {
+        "userId": 2,
+        "comments": "",
+        "needCharge": false,
+        "fromDate": {
+          "year": 2022,
+          "month": 5,
+          "day": 12
+        },
+        "toDate": {
+          "year": 2022,
+          "month": 5,
+          "day": 13
+        }
       }
-    ]
-  }
+    },
+    {
+      "id": 3,
+      "title": "Samsung Galaxy Z",
+      "src": "https://img.mvideo.ru/Pdb/small_pic/200/30058442b.jpg",
+      "description": "Samsung Galaxy Z Flip3 5G 8/128GB (бежевый)",
+      "isBooked": false,
+      "bookData": {
+        "id": -1,
+        "fromDate": null,
+        "toDate": null,
+        "needCharge": false,
+        "comments": ""
+      }
+    },
+    {
+      "id": 4,
+      "title": "Xiaomi Redmi Note 11",
+      "src": "https://img.mvideo.ru/Pdb/small_pic/200/30062382b.jpg",
+      "description": "Xiaomi Redmi Note 11 4/128GB (серый графит)",
+      "isBooked": true,
+      "bookData": {
+        "userId": 1,
+        "comments": "Никита лучший!!!!!!!",
+        "needCharge": true,
+        "fromDate": {
+          "year": 2022,
+          "month": 5,
+          "day": 19
+        },
+        "toDate": {
+          "year": 2022,
+          "month": 5,
+          "day": 21
+        }
+      }
+    }
+  ]
+}
