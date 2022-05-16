@@ -1,0 +1,47 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+/* You can add global styles to this file, and also import other style files */
+html {
+  /*background: linear-gradient(100deg,#3d1d44 0,#191120 79%,#231026 100%);*/
+  /*background-image: linear-gradient(100deg, rgb(61, 29, 68) 0px, rgb(25, 17, 32) 79%, rgb(35, 16, 38) 100%);*/
+  /*background-repeat: repeat;*/
+}
+
+%loading-skeleton {
+  color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #eee;
+  border-color: #eee;
+
+  &::placeholder {
+    color: transparent;
+  }
+}
+
+@keyframes loading-skeleton {
+  from {
+    opacity: .4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loading-skeleton {
+  pointer-events: none;
+  animation: loading-skeleton 1s infinite alternate;
+
+  img {
+    filter: grayscale(100) contrast(0%) brightness(1.8);
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  p, li,
+  .btn,
+  label,
+  .form-control {
+    @extend %loading-skeleton;
+  }
+}
+

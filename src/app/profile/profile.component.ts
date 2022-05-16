@@ -12,6 +12,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class ProfileComponent implements OnInit {
   currentCards!: IDevice[];
+  dataLoaded = false;
   currentUser: User = {
     name: '',
     email: '',
@@ -21,13 +22,10 @@ export class ProfileComponent implements OnInit {
     accessToken: '',
   };
 
-  constructor(private authService: AuthService,
-              private _http: HttpClient,
-              private modalService: NgbModal) {
+  constructor(private authService: AuthService, private _http: HttpClient, private modalService: NgbModal) {
     this.authService.currentUser.subscribe((x) => {
       this.currentUser = x!;
     });
-
   }
 
   append(id: number) {
@@ -42,7 +40,7 @@ export class ProfileComponent implements OnInit {
 
   remove(id: number) {
     return updateDevice(id!, {
-        ownerId: null,
+        userId: null,
         bookData: {
           comments: "",
           toDate: null,
@@ -60,13 +58,14 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this._http
-      .get<IDevice[]>('http://localhost:3000/devices', {
+      .get<IDevice[]>('http://localhost:3000/devices?_expand=category', {
         headers: {
           authorization: `Bearer ${this.currentUser.accessToken}`,
         },
       })
       .subscribe((x: IDevice[]) => {
-        this.currentCards = x.filter((x) => x.ownerId === this.currentUser.id);
+        this.currentCards = x.filter((x) => x.userId === this.currentUser.id);
+        this.dataLoaded = true;
       });
   }
 

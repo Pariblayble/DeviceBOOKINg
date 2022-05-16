@@ -1,40 +1,60 @@
-<div>
-  <div class="h1">{{ currentUser.name }} {{ currentUser.secondName }}</div>
-  <div class="badge bg-primary text-wrap">{{ currentUser.email }}</div>
-  <div class="h2 mt-4">Забронированные устройства</div>
-  <div class="row mt-3">
-    <div *ngFor="let device of currentCards" class="col-sm-12 col-md-6 col-lg-3">
-      <div class="card">
-        <img class="card-img-top" [src]="device.src" alt="no"/>
-        <div class="card-body">
-          <h4 class="card-title">{{ device.title }}</h4>
-          <p class="card-text">{{ device.description | slice : 0:30}}...</p>
-          <p class="card-text text-secondary">
-            {{device.bookData.fromDate!.day}}.{{device.bookData.fromDate!.month}}.{{device.bookData.fromDate!.year}} - </p>
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" (click)="remove(device.id)" class="btn btn-sm btn-danger">
-              Завершить бронь
-            </button>
-            <button type="button" (click)="open(content, device.id)" class="btn btn-sm btn-primary">
-              Продлить бронь
+<div class="h1">{{ currentUser.name }} {{ currentUser.secondName }}</div>
+<div class="badge bg-primary text-wrap">{{ currentUser.email }}</div>
+<div class="h2 mt-4">Забронированные устройства</div>
+<div class="row mt-3" *ngIf="dataLoaded; else skeleton">
+  <div *ngFor="let device of currentCards" class="col-sm-12 col-md-6 col-lg-3">
+    <div class="card">
+      <img class="card-img-top" [src]="device.src" alt="no"/>
+      <div class="card-body">
+        <h4 class="card-title">{{ device.title }}</h4>
+        <p class="card-text">{{ device.description | slice : 0:30}}...</p>
+        <p class="card-text text-secondary" *ngIf="device.bookData.toDate !== undefined">
+          {{device.bookData.fromDate! | date : 'dd.MM.yyyy'}} - {{device.bookData.toDate! | date : 'dd.MM.yyyy'}}
+        </p>
+        <p class="card-text text-secondary" *ngIf="device.bookData.toDate === undefined">
+          с {{device.bookData.fromDate! | date : 'dd.MM.yyyy'}}
+        </p>
+        <button type="button" (click)="remove(device.id)" class="btn btn-sm btn-danger">
+          Завершить бронь
+        </button>
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Продление аренды</h4>
+            <button type="button" class="btn-close" aria-label="Close"
+                    (click)="modal.dismiss('Cross click')"></button>
+          </div>
+          <div class="modal-body">
+            <h5>Хотите продлить аренду на 5 дней?</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-dark">Продлить
             </button>
           </div>
-          <ng-template #content let-modal>
-            <div class="modal-header">
-              <h4 class="modal-title" id="modal-basic-title">Продление аренды</h4>
-              <button type="button" class="btn-close" aria-label="Close"
-                      (click)="modal.dismiss('Cross click')"></button>
-            </div>
-            <div class="modal-body">
-              <h5>Хотите продлить аренду на 5 дней?</h5>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-dark">Продлить
-              </button>
-            </div>
-          </ng-template>
-        </div>
+        </ng-template>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #skeleton>
+  <div class="row mt-3 loading-skeleton">
+    <div *ngFor="let device of [1, 2, 3]" class="col-sm-12 col-md-6 col-lg-3">
+      <div class="card">
+        <img class="card-img-top" src="/assets/skeleton.png" alt="no"/>
+        <div class="card-body">
+          <h4 class="card-title">IPhone 15</h4>
+          <p class="card-text">-</p>
+          <p class="card-text">-</p>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-sm btn-danger" disabled>
+              Завершить бронь
+            </button>
+            <button type="button" class="btn btn-sm btn-primary" disabled>
+              Продлить бронь
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

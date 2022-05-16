@@ -1,15 +1,21 @@
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-
 export interface IBookingData {
-  fromDate: NgbDate | null;
-  toDate?: NgbDate | null;
+  fromDate: number | null;
+  toDate?: number | null;
   needCharge: boolean;
   comments: string;
 }
+
+export interface ICategory {
+  id: number;
+  title: string;
+  slug: string;
+  devices: IDevice[];
+}
+
 export interface IDevice {
   title: string;
   src: string;
-  ownerId: number | null;
+  userId: number | null;
   description: string;
   id: number;
   bookData: IBookingData;

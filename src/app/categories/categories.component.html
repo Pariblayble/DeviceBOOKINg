@@ -1,0 +1,93 @@
+<div class="h1">Список устройств</div>
+<hr/>
+<div *ngIf="dataLoaded; else skeleton">
+  <div *ngFor="let category of categories">
+    <a class="h4 text-dark" [routerLink]="'/category/'+category.slug">{{ category.title }}</a>
+    <div class="row my-3">
+      <div *ngFor="let device of category.devices.slice(0, 4)" class="col-sm-12 col-md-6 col-lg-3">
+        <div class="card">
+          <img class="card-img-top" [src]="device.src" alt="no"/>
+          <div class="card-body">
+            <h4 class="card-title">{{ device.title }}</h4>
+            <p class="card-text">{{ device.description }}</p>
+            <ng-template #content let-modal>
+              <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Бронирование {{ device.title }}</h4>
+                  <button type="button" class="btn-close" aria-label="Close"
+                          (click)="modal.dismiss('Cross click')"></button>
+                </div>
+                <div class="modal-body">
+                  <p class="mb-3 lead">Примерное время брони</p>
+                  <div class="container mb-3 col-sm-12 col-md-12 col-lg-8">
+                    <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                                    [dayTemplate]="t" outsideDays="hidden">
+                    </ngb-datepicker>
+
+                    <ng-template #t let-date let-focused="focused">
+                                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                                              [class.faded]="isHovered(date) || isInside(date)"
+                                              (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+                                            {{ date.day }}
+                                        </span>
+                    </ng-template>
+                  </div>
+                  <div class="form-group">
+                    <p class="mb-3 lead">
+                      <input type="checkbox" value="withPower" formControlName="needCharge" id="get">
+                      <label for="get" class="ms-2">Взять зарядное устройство</label>
+                    </p>
+                  </div>
+                  <div class="form-group">
+                    <label for="comment" class="mb-2 lead">Дополнительные комментарии:</label>
+                    <textarea class="form-control" id="comment" formControlName="cumments"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-dark" *ngIf="!device.userId">Забронировать
+                  </button>
+                  <button type="submit" class="btn btn-success" *ngIf="!!device.userId"
+                          disabled="true">Забронировано вами
+                  </button>
+                </div>
+              </form>
+            </ng-template>
+            <button type="button" class="btn btn-sm btn-primary"
+                    (click)="open(content, device.id)" *ngIf="device.userId === null">Забронировать
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary"
+                    (click)="open(content, device.id)"
+                    *ngIf="device.userId !== null && currentUser.id !== device.userId"
+                    disabled="true">Забронировано
+            </button>
+            <button type="button" class="btn btn-sm btn-success"
+                    (click)="open(content, device.id)"
+                    *ngIf="device.userId !== null && currentUser.id === device.userId"
+                    [disabled]="true">Забронировано вами
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="loading-skeleton">
+    <h3>Категория</h3>
+    <div class="row mt-3">
+      <div *ngFor="let device of [1, 2, 3]" class="col-sm-12 col-md-6 col-lg-3">
+        <div class="card">
+          <img class="card-img-top" src="/assets/skeleton.png" alt="no"/>
+          <div class="card-body">
+            <h4 class="card-title">IPhone 15</h4>
+            <p class="card-text">Description</p>
+            <button type="button" class="btn btn-sm btn-primary">Забронировать
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

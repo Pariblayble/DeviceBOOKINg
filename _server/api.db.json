@@ -6,30 +6,61 @@
       "secondName": "Сонина",
       "email": "gena.chid@mail.ru",
       "password": "krasivieGlaza"
+    }
+  ],
+  "categories": [
+    {
+      "title": "Смартфоны",
+      "slug": "smartphones",
+      "id": 1
     },
     {
-      "id": 2,
-      "email": "gena.chid1@mail.ru",
-      "password": "krasivieGlaza"
-    },
-    {
-      "id": 3,
-      "email": "gena.chi123d1@mail.ru",
-      "password": "krasivieGlaza"
+      "title": "Планшеты",
+      "slug": "tablets",
+      "id": 2
     }
   ],
   "devices": [
     {
+      "id": 1,
+      "title": "IPhone 5",
+      "src": "https://img.mvideo.ru/Pdb/small_pic/200/30052942b.jpg",
+      "description": "Смартфон Apple iPhone 15 228GB с новой комплектацией черный",
+      "categoryId": 1,
+      "userId": null,
+      "bookData": {
+        "comments": "",
+        "needCharge": false,
+        "fromDate": 1655233200000,
+        "toDate": 1656097200000
+      }
+    },
+    {
+      "id": 4,
+      "title": "IPhone 13",
+      "src": "https://img.mvideo.ru/Pdb/small_pic/200/30052942b.jpg",
+      "description": "Смартфон Apple iPhone 15 228GB с новой комплектацией черный",
+      "categoryId": 1,
+      "userId": null,
+      "bookData": {
+        "comments": "",
+        "needCharge": true,
+        "fromDate": 1655233200000,
+        "toDate": 1656097200000
+      }
+    },
+    {
+      "id": 5,
       "title": "IPhone 15",
       "src": "https://img.mvideo.ru/Pdb/small_pic/200/30052942b.jpg",
       "description": "Смартфон Apple iPhone 15 228GB с новой комплектацией черный",
-      "id": 1,
-      "ownerId": null,
+      "categoryId": 1,
+      "userId": null,
       "bookData": {
         "comments": "",
-        "toDate": null,
         "needCharge": false,
-        "fromDate": null
+        "fromDate": 1655233200000,
+        "toDate": 1656097200000
       }
     },
     {
@@ -37,12 +68,13 @@
       "title": "Honor 50",
       "src": "https://img.mvideo.ru/Pdb/small_pic/480/30059410b.jpg",
       "description": "Смартфон Honor 50 6/128GB изумрудно-зеленый",
-      "ownerId": null,
+      "categoryId": 1,
+      "userId": null,
       "bookData": {
         "comments": "",
-        "toDate": null,
         "needCharge": false,
-        "fromDate": null
+        "fromDate": 1655146800000,
+        "toDate": 1656010800000
       }
     },
     {
@@ -50,7 +82,8 @@
       "title": "Samsung Galaxy Z",
       "src": "https://img.mvideo.ru/Pdb/small_pic/200/30058442b.jpg",
       "description": "Samsung Galaxy Z Flip3 5G 8/128GB (бежевый)",
-      "ownerId": null,
+      "categoryId": 1,
+      "userId": null,
       "bookData": {
         "comments": "",
         "toDate": null,

@@ -1,8 +1,8 @@
 // @ts-nocheck
 const bodyParser = require('body-parser');
-const { create, defaults, router } = require('json-server');
+const {create, defaults, router} = require('json-server');
 const jwt = require('jsonwebtoken');
-const { join } = require('path');
+const {join} = require('path');
 
 const PORT = process.env['PORT'] ?? 3000;
 const DATA_PATH =
@@ -15,7 +15,7 @@ const server = create();
 const jsonRouter = router(join(DATA_PATH, DATA_NAME));
 const middlewares = defaults();
 
-server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.urlencoded({extended: true}));
 server.use(bodyParser.json());
 server.use(middlewares);
 
@@ -26,28 +26,32 @@ server.post('/auth/login', (req, res) => {
   };
   const user: { id: number; email: string; password: string } | null =
     (jsonRouter.db.get('users') as any)
-      .find({ email: payload.email, password: payload.password })
+      .find({email: payload.email, password: payload.password})
       .value() ?? null;
 
   if (user) {
     const accessToken = jwt.sign(payload, JWT_SECRET_KEY, {
       expiresIn: JWT_EXPIRES_IN,
     });
-    const { password, ...other } = user;
-    res.status(200).json({ accessToken, ...other });
+    const {password, ...other} = user;
+    res.status(200).json({accessToken, ...other});
   } else {
     const message = 'Incorrect username or password';
-    res.status(401).json({ message });
+    res.status(401).json({message});
   }
 });
 
-server.use(/^(?!\/auth).*$/, (req, res, next) => {
+server.use(/^(?!\/auth).*$/, async (req, res, next) => {
+  // Для показа скелетонов
+  if (req.method === "GET") {
+    await sleep(1000);
+  }
   if (
     req.headers.authorization === undefined ||
     req.headers.authorization.split(' ')[0] !== 'Bearer'
   ) {
     const message = 'Error in authorization format';
-    res.status(401).json({ message });
+    res.status(401).json({message});
     return;
   }
   try {
@@ -58,13 +62,13 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
 
     if (verifyTokenResult instanceof Error) {
       const message = 'Access token not provided';
-      res.status(401).json({ message });
+      res.status(401).json({message});
       return;
     }
     next();
   } catch (err) {
     const message = 'Error access_token is revoked';
-    res.status(401).json({ message });
+    res.status(401).json({message});
   }
 });
 
@@ -73,3 +77,9 @@ server.use(jsonRouter);
 server.listen(PORT, () => {
   console.log(`JSON Server is running on port: ${PORT}`);
 });
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
