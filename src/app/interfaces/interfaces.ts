@@ -1,18 +1,17 @@
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 export interface IBookingData {
-  userId?: number;
-  fromDate?: NgbDate;
+  fromDate: NgbDate | null;
   toDate?: NgbDate | null;
-  needCharge?: boolean;
-  comments?: string;
+  needCharge: boolean;
+  comments: string;
 }
 export interface IDevice {
   title: string;
   src: string;
+  ownerId: number | null;
   description: string;
   id: number;
-  isBooked: boolean;
   bookData: IBookingData;
 }
 
@@ -22,5 +21,5 @@ export interface User {
   secondName: string;
   email: string;
   password: string;
-  token?: string;
+  accessToken?: string;
 }

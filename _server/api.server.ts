@@ -33,7 +33,8 @@ server.post('/auth/login', (req, res) => {
     const accessToken = jwt.sign(payload, JWT_SECRET_KEY, {
       expiresIn: JWT_EXPIRES_IN,
     });
-    res.status(200).json({ accessToken, id: user.id });
+    const { password, ...other } = user;
+    res.status(200).json({ accessToken, ...other });
   } else {
     const message = 'Incorrect username or password';
     res.status(401).json({ message });

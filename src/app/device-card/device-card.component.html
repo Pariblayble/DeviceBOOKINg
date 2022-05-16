@@ -1,54 +1,66 @@
-<div class="container">
-    <div class="row">
-        <div *ngFor="let card of currentCards" class="card col-sm-12 col-md-6 col-lg-3">
-            <img class="card-img-top" [src]="card.src" alt="no">
-            <div class="card-body">
-                <h2 class="card-title">{{ card.title }}</h2>
-                <p class="card-text">{{ card.description }}</p>
-                <ng-template #content let-modal>
-                    <form [formGroup]="bookForm" (ngSubmit)="onSubmit(card.id)">
-                        <input type="hidden" formControlName="id" [value]="card.id">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Бронирование {{ card.title }}</h4>
-                            <button type="button" class="btn-close" aria-label="Close"
-                                (click)="modal.dismiss('Cross click')"></button>
-                        </div>
-                        <div class="modal-body">
-                                <p class="mb-3 lead">Примерное время брони</p>
-                                <div class="container mb-3 col-sm-12 col-md-12 col-lg-8">
-                                    <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
-                                        [dayTemplate]="t" outsideDays="hidden">
-                                    </ngb-datepicker>
+<div class="h1">Список устройств</div>
+<div class="row mt-3">
+  <div *ngFor="let card of currentCards" class="col-sm-12 col-md-6 col-lg-3">
+    <div class="card">
+      <img class="card-img-top" [src]="card.src" alt="no">
+      <div class="card-body">
+        <h4 class="card-title">{{ card.title }}</h4>
+        <p class="card-text">{{ card.description }}</p>
+        <ng-template #content let-modal>
+          <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Бронирование {{ card.title }}</h4>
+              <button type="button" class="btn-close" aria-label="Close"
+                      (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+              <p class="mb-3 lead">Примерное время брони</p>
+              <div class="container mb-3 col-sm-12 col-md-12 col-lg-8">
+                <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                                [dayTemplate]="t" outsideDays="hidden">
+                </ngb-datepicker>
 
-                                    <ng-template #t let-date let-focused="focused">
+                <ng-template #t let-date let-focused="focused">
                                         <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                                            [class.faded]="isHovered(date) || isInside(date)"
-                                            (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+                                              [class.faded]="isHovered(date) || isInside(date)"
+                                              (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
                                             {{ date.day }}
                                         </span>
-                                    </ng-template>
-                                </div>
-                                <div class="form-group">
-                                    <p class="mb-3 lead"> 
-                                        <input type="checkbox" value="withPower" formControlName="needCharge" id="get">
-                                        <label for="get" class="ms-2">Взять зарядное устройство</label>
-                                    </p>
-                                </div>
-                                <div class="form-group">
-                                    <label for="comment" class="mb-2 lead">Дополнительные комментарии:</label>
-                                    <textarea class="form-control" id="comment" formControlName="cumments"></textarea>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-outline-dark" (click)="modal.close()">Забронировать</button>
-                        </div>
-                    </form>
                 </ng-template>
-
-                <button type="button" class="btn btn-lg btn-outline-primary"
-                    (click)="open(content)" [disabled]="card.isBooked">Забронировать</button>
-                    <p *ngIf="card.isBooked">Устройство уже забранировано</p>
+              </div>
+              <div class="form-group">
+                <p class="mb-3 lead">
+                  <input type="checkbox" value="withPower" formControlName="needCharge" id="get">
+                  <label for="get" class="ms-2">Взять зарядное устройство</label>
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="comment" class="mb-2 lead">Дополнительные комментарии:</label>
+                <textarea class="form-control" id="comment" formControlName="cumments"></textarea>
+              </div>
             </div>
-        </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-dark" *ngIf="!card.ownerId">Забронировать
+              </button>
+              <button type="submit" class="btn btn-success" *ngIf="!!card.ownerId"
+                      disabled="true">Забронировано вами
+              </button>
+            </div>
+          </form>
+        </ng-template>
+
+        <button type="button" class="btn btn-sm btn-primary"
+                (click)="open(content, card.id)" *ngIf="card.ownerId === null">Забронировать
+        </button>
+        <button type="button" class="btn btn-sm btn-secondary"
+                (click)="open(content, card.id)" *ngIf="card.ownerId !== null && currentUser.id !== card.ownerId"
+                disabled="true">Забронировано
+        </button>
+        <button type="button" class="btn btn-sm btn-success"
+                (click)="open(content, card.id)" *ngIf="card.ownerId !== null && currentUser.id === card.ownerId"
+                [disabled]="true">Забронировано вами
+        </button>
+      </div>
     </div>
+  </div>
 </div>

@@ -1,0 +1,40 @@
+<div>
+  <div class="h1">{{ currentUser.name }} {{ currentUser.secondName }}</div>
+  <div class="badge bg-primary text-wrap">{{ currentUser.email }}</div>
+  <div class="h2 mt-4">Забронированные устройства</div>
+  <div class="row mt-3">
+    <div *ngFor="let device of currentCards" class="col-sm-12 col-md-6 col-lg-3">
+      <div class="card">
+        <img class="card-img-top" [src]="device.src" alt="no"/>
+        <div class="card-body">
+          <h4 class="card-title">{{ device.title }}</h4>
+          <p class="card-text">{{ device.description | slice : 0:30}}...</p>
+          <p class="card-text text-secondary">
+            {{device.bookData.fromDate!.day}}.{{device.bookData.fromDate!.month}}.{{device.bookData.fromDate!.year}} - </p>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" (click)="remove(device.id)" class="btn btn-sm btn-danger">
+              Завершить бронь
+            </button>
+            <button type="button" (click)="open(content, device.id)" class="btn btn-sm btn-primary">
+              Продлить бронь
+            </button>
+          </div>
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Продление аренды</h4>
+              <button type="button" class="btn-close" aria-label="Close"
+                      (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+              <h5>Хотите продлить аренду на 5 дней?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-dark">Продлить
+              </button>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
