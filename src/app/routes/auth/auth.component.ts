@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
-import { AuthService } from './auth.service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {first} from 'rxjs';
+import {AuthService} from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit {
     private _authService: AuthService
   ) {
     if (this._authService.currentUserValue) {
-      this._router.navigate(['devices']);
+      this._router.navigate(['categories']);
     }
   }
 
@@ -30,7 +30,7 @@ export class AuthComponent implements OnInit {
     });
 
     this.returnUrl =
-      this._route.snapshot.queryParams['returnUrl'] || '/devices';
+      this._route.snapshot.queryParams['returnUrl'] || '/categories';
   }
 
   public onSubmit() {
@@ -41,7 +41,8 @@ export class AuthComponent implements OnInit {
         (data) => {
           this._router.navigate([this.returnUrl]);
         },
-        (error) => {}
+        (error) => {
+        }
       );
   }
 }

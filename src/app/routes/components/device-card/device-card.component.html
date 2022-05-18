@@ -1,0 +1,8 @@
+<div class="card">
+  <img class="card-img-top" [routerLink]="'/device/'+device.slug" [src]="device.croppedImage" alt="no"/>
+  <div class="card-body">
+    <a [routerLink]="'/device/'+device.slug" class="card-title text-dark"><h4>{{ device.title }}</h4></a>
+    <p class="card-text">{{ device.description | slice : 0:50}}...</p>
+    <app-book-button [device]="device"></app-book-button>
+  </div>
+</div>

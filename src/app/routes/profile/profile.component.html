@@ -1,12 +1,13 @@
 <div class="h1">{{ currentUser.name }} {{ currentUser.secondName }}</div>
 <div class="badge bg-primary text-wrap">{{ currentUser.email }}</div>
+<hr/>
 <div class="h2 mt-4">Забронированные устройства</div>
 <div class="row mt-3" *ngIf="dataLoaded; else skeleton">
   <div *ngFor="let device of currentCards" class="col-sm-12 col-md-6 col-lg-3">
     <div class="card">
-      <img class="card-img-top" [src]="device.src" alt="no"/>
+      <img class="card-img-top" [routerLink]="'/device/'+device.slug" [src]="device.croppedImage" alt="no"/>
       <div class="card-body">
-        <h4 class="card-title">{{ device.title }}</h4>
+        <a class="card-title h4 text-dark" [routerLink]="'/device/'+device.slug">{{ device.title }}</a>
         <p class="card-text">{{ device.description | slice : 0:30}}...</p>
         <p class="card-text text-secondary" *ngIf="device.bookData.toDate !== undefined">
           {{device.bookData.fromDate! | date : 'dd.MM.yyyy'}} - {{device.bookData.toDate! | date : 'dd.MM.yyyy'}}
@@ -23,9 +24,6 @@
             <button type="button" class="btn-close" aria-label="Close"
                     (click)="modal.dismiss('Cross click')"></button>
           </div>
-          <div class="modal-body">
-            <h5>Хотите продлить аренду на 5 дней?</h5>
-          </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-dark">Продлить
             </button>
@@ -38,7 +36,7 @@
 
 <ng-template #skeleton>
   <div class="row mt-3 loading-skeleton">
-    <div *ngFor="let device of [1, 2, 3]" class="col-sm-12 col-md-6 col-lg-3">
+    <div *ngFor="let device of [1, 2, 3, 4]" class="col-sm-12 col-md-6 col-lg-3">
       <div class="card">
         <img class="card-img-top" src="/assets/skeleton.png" alt="no"/>
         <div class="card-body">

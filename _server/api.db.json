@@ -6,6 +6,13 @@
       "secondName": "Сонина",
       "email": "gena.chid@mail.ru",
       "password": "krasivieGlaza"
+    },
+    {
+      "id": 2,
+      "name": "Никита",
+      "secondName": "Боярский",
+      "email": "Nikita@sun.ru",
+      "password": "fizTehTop"
     }
   ],
   "categories": [
@@ -23,12 +30,40 @@
   "devices": [
     {
       "id": 1,
-      "title": "IPhone 5",
-      "src": "https://img.mvideo.ru/Pdb/small_pic/200/30052942b.jpg",
-      "description": "Смартфон Apple iPhone 15 228GB с новой комплектацией черный",
+      "title": "Xiaomi Redmi 10",
+      "slug": "xiaomi-redmi-10",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/480/30059024b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30059024bb.jpg",
+      "description": "В смартфоне Xiaomi Redmi 10 установлен 6,5-дюймовый IPS-экран с разрешением 1080 х 2400 пикселей. Благодаря яркому, детализированному изображению и насыщенным и в то же время реалистичным цветам он хорошо подходит для игр и просмотра фильмов.\n\nМНОЖЕСТВО ВОЗМОЖНОСТЕЙ ДЛЯ СЪЁМКИ\nОсновной объектив квадрокамеры может похвастаться 50-мегапиксельной матрицей, которая отлично фиксирует мельчайшие подробности. Она дополнена сверхширокоугольным модулем для панорамных фото и датчиками для макросъёмки и создания портретов с мягко",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "Android 11"
+        },
+        {
+          "title": "Экран",
+          "details": "6.5\"/1080x2400 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "IPS"
+        },
+        {
+          "title": "Процессор",
+          "details": "Mediatek Helio G88 2 x 2 ГГц + 6 x 1.8 ГГц"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "128 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "50/8/2/2"
+        }
+      ],
       "categoryId": 1,
-      "userId": null,
       "bookData": {
+        "userId": 1,
         "comments": "",
         "needCharge": false,
         "fromDate": 1655233200000,
@@ -37,58 +72,212 @@
     },
     {
       "id": 4,
-      "title": "IPhone 13",
-      "src": "https://img.mvideo.ru/Pdb/small_pic/200/30052942b.jpg",
-      "description": "Смартфон Apple iPhone 15 228GB с новой комплектацией черный",
+      "title": "IPhone 13 Pro",
+      "slug": "iphone-13-pro",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/480/30059054b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30059054bb.jpg",
+      "description": "iPhone 13 Pro. Новые камеры. Нереальные возможности.\n\niPhone 13 Pro. Грандиозный апгрейд камер Pro. Режим «Киноэффект» делает из видео настоящее кино. Дисплей Super Retina XDR с технологией ProMotion для более быстрого и плавного взаимодействия. А15 Bionic — самый быстрый чип для iPhone. Прочный корпус и огромный прирост ресурса аккумулятора.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "iOS 15.4.1"
+        },
+        {
+          "title": "Экран",
+          "details": "6.1\"/2532x1170 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "OLED"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "A15 Bionic"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "128 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "12/12/12"
+        }
+      ],
       "categoryId": 1,
-      "userId": null,
       "bookData": {
+        "userId": null,
         "comments": "",
-        "needCharge": true,
-        "fromDate": 1655233200000,
-        "toDate": 1656097200000
-      }
-    },
-    {
-      "id": 5,
-      "title": "IPhone 15",
-      "src": "https://img.mvideo.ru/Pdb/small_pic/200/30052942b.jpg",
-      "description": "Смартфон Apple iPhone 15 228GB с новой комплектацией черный",
-      "categoryId": 1,
-      "userId": null,
-      "bookData": {
-        "comments": "",
+        "toDate": null,
         "needCharge": false,
-        "fromDate": 1655233200000,
-        "toDate": 1656097200000
+        "fromDate": null
       }
     },
     {
       "id": 2,
       "title": "Honor 50",
-      "src": "https://img.mvideo.ru/Pdb/small_pic/480/30059410b.jpg",
-      "description": "Смартфон Honor 50 6/128GB изумрудно-зеленый",
+      "slug": "honor-50",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/480/30059411b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30059411bb.jpg",
+      "description": "Безрамочный экран смартфона Honor 50 создан по технологии OLED. Его диагональ составляет 6,57 дюйма, а разрешение – 2340 х 1080 пикселей. Такой дисплей воспроизводит яркую, детализированную картинку с реалистичными цветами и отлично подходит как для решения несложных повседневных задач, так и для игр и просмотра фильмов.\n\nТВОРЧЕСКИЙ ПОДХОД К СЪЁМКЕ\nКвадрокамера на задней панели позволяет создавать снимки разных типов. Основной 108-мегапиксельный объектив чётко фиксирует мельчайшие подробности даже при недостаточном освещении. Остальные модули пригодятся, чтобы делать",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "Android Magic UI 4.2  (На базе Android 11)"
+        },
+        {
+          "title": "Экран",
+          "details": "6.57\"/2340x1080 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "OLED"
+        },
+        {
+          "title": "Процессор",
+          "details": "Qualcomm Snapdragon 778G 1 х 2.4ГГц + 3 х 2.2ГГц + 4 х 1.9ГГц"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "128 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "108/8/2/2"
+        }
+      ],
       "categoryId": 1,
-      "userId": null,
       "bookData": {
+        "userId": 1,
         "comments": "",
         "needCharge": false,
-        "fromDate": 1655146800000,
-        "toDate": 1656010800000
+        "fromDate": 1655233200000,
+        "toDate": 1656097200000
       }
     },
     {
       "id": 3,
       "title": "Samsung Galaxy Z",
-      "src": "https://img.mvideo.ru/Pdb/small_pic/200/30058442b.jpg",
-      "description": "Samsung Galaxy Z Flip3 5G 8/128GB (бежевый)",
+      "slug": "samsung-galaxy-z",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/480/30058449b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30058449bb.jpg",
+      "description": "Смартфон Samsung Galaxy Z Flip 3 с лёгкостью поместится в самую маленькую сумочку и карман узких джинсов, ведь его размер в сложенном виде – лишь 4,2 дюйма. Выполняйте наиболее важные действия, применив внешний мини-дисплей и настроив для лёгкого доступа.\n\nСНИМАЙТЕ ВСЁ\nДелайте фото и видео с разных ракурсов без помощи рук и даже без штатива. Вам доступна профессиональная фотосессия благодаря широкоугольной и фронтальной камерам, а также высококачественные селфи под любым углом.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "Android 11"
+        },
+        {
+          "title": "Экран",
+          "details": "6.7\"/2640x1080 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "Dynamic AMOLED 2X"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "Qualcomm Snapdragon 888 1 х 2.84ГГц + 3 х 2.41ГГц + 4 х 1.78ГГц"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "256 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "12/12/TOF"
+        }
+      ],
       "categoryId": 1,
-      "userId": null,
       "bookData": {
+        "userId": null,
         "comments": "",
         "toDate": null,
         "needCharge": false,
         "fromDate": null
+      }
+    },
+    {
+      "id": 5,
+      "title": "Samsung Galaxy Tab A8",
+      "slug": "samsung-galaxy-tab-a8",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/480/30061353b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30061353bb.jpg",
+      "description": "В планшет Samsung Galaxy Tab A8 установлено 64 Гб внутренней памяти, а слот для карт памяти формата microSD позволяет расширить внутреннее хранилище ещё на 1 Тб. Большой ёмкостный дисплей создан по технологии IPS (чёткая видимость при ярком солнце).Устройство оснащено четырьмя встроенными стереодинамиками с поддержкой технологии Dolby Atmos, восьмимегапиксельной тыльной и пятимегапиксельной фронтальной камерой. За стабильную работу системы отвечает восьмиядерный процессор Unisoc Tiger T618 тактовой частотой 2 Ггц. В девайс установлен аккумулятор 7040 мАч, который обеспечивает длительную работу без подзарядки. Планшет питается от сети через разъём Type C.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "Android 11"
+        },
+        {
+          "title": "Экран",
+          "details": "10.5\"/1920x1200 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "TFT"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "Tiger T618"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "64 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "8"
+        }
+      ],
+      "categoryId": 2,
+      "bookData": {
+        "userId": null,
+        "comments": "",
+        "toDate": null,
+        "needCharge": false,
+        "fromDate": null
+      }
+    },
+    {
+      "id": 6,
+      "title": "Apple 11\" iPad Pro",
+      "slug": "apple11-ipad-pro",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/200/30056725b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30056725bb.jpg",
+      "description": "iPad Pro. С суперсилой чипа Apple M1. iPad Pro. С мощным чипом Apple M1, великолепным дисплеем Liquid Retina 11 дюймов и сверхскоростной беспроводной связью. Полный вперёд.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "iOS 15.5"
+        },
+        {
+          "title": "Экран",
+          "details": "11\"/1668x2388 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "IPS"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "M1"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "1024 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "12/10"
+        }
+      ],
+      "categoryId": 2,
+      "bookData": {
+        "userId": 2,
+        "comments": "Я повар",
+        "needCharge": true,
+        "fromDate": 1654887600000,
+        "toDate": 1655406000000
       }
     }
   ]

@@ -1,0 +1,23 @@
+<div class="h1">Список устройств</div>
+<hr/>
+<div *ngIf="dataLoaded; else skeleton">
+  <div *ngFor="let category of categories">
+    <a class="h4 text-dark" [routerLink]="'/category/'+category.slug">{{ category.title }}</a>
+    <div class="row my-3">
+      <div *ngFor="let device of category.devices.slice(0, 4)" class="col-sm-12 col-md-6 col-lg-3">
+        <app-category-device-card [device]="device"></app-category-device-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="loading-skeleton">
+    <h3>Категория</h3>
+    <div class="row mt-3">
+      <div *ngFor="let device of [fakeDevice, fakeDevice, fakeDevice, fakeDevice]" class="col-sm-12 col-md-6 col-lg-3">
+        <app-category-device-card [device]="device"></app-category-device-card>
+      </div>
+    </div>
+  </div>
+</ng-template>

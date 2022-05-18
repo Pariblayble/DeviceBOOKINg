@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
-import { User } from '../interfaces/interfaces';
+import { AuthService } from '../../routes/auth/auth.service';
+import { User } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-nav-menu',
