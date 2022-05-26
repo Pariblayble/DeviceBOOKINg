@@ -7,6 +7,7 @@ export const fakeDevice: IDevice = {
     croppedImage: "/assets/skeleton.png",
     fullImage: "/assets/skeleton.png",
     specs: [],
+    bookedDevices: [],
     description: " Смартфон Xiaomi Redmi 10 4+64GB Carbon Gray ",
     bookData: {
         userId: null,

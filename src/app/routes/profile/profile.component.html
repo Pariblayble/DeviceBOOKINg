@@ -1,21 +1,31 @@
-<div class="h1">{{ currentUser.name }} {{ currentUser.secondName }}</div>
-<div class="badge bg-primary text-wrap">{{ currentUser.email }}</div>
+<div *ngIf="isProfileLoaded; else skeleton_profile">
+  <div class="row">
+    <div class="col-1">
+      <img [src]="currentUser.avatarUrl" class="img-thumbnail rounded" alt="Аватар">
+    </div>
+    <div class="col-11">
+      <div class="h1">{{ currentUser.name }} {{ currentUser.secondName }}</div>
+      <div class="badge bg-primary text-wrap">{{ currentUser.email }}</div>
+    </div>
+  </div>
+  <div class="h2 mt-4">Забронированные устройства</div>
+</div>
 <hr/>
-<div class="h2 mt-4">Забронированные устройства</div>
-<div class="row mt-3" *ngIf="dataLoaded; else skeleton">
-  <div *ngFor="let device of currentCards" class="col-sm-12 col-md-6 col-lg-3">
+<div class="row mt-3" *ngIf="isCardsLoaded; else skeleton_cards">
+  <div *ngFor="let booked of currentCards" class="col-sm-12 col-md-6 col-lg-3">
     <div class="card">
-      <img class="card-img-top" [routerLink]="'/device/'+device.slug" [src]="device.croppedImage" alt="no"/>
+      <img class="card-img-top" [routerLink]="'/device/'+booked.device.slug" [src]="booked.device.croppedImage"
+           alt="no"/>
       <div class="card-body">
-        <a class="card-title h4 text-dark" [routerLink]="'/device/'+device.slug">{{ device.title }}</a>
-        <p class="card-text">{{ device.description | slice : 0:30}}...</p>
-        <p class="card-text text-secondary" *ngIf="device.bookData.toDate !== undefined">
-          {{device.bookData.fromDate! | date : 'dd.MM.yyyy'}} - {{device.bookData.toDate! | date : 'dd.MM.yyyy'}}
+        <a class="card-title h4 text-dark" [routerLink]="'/device/'+booked.device.slug">{{ booked.device.title }}</a>
+        <p class="card-text">{{ booked.device.description | slice : 0:30}}...</p>
+        <p class="card-text text-secondary" *ngIf="booked.toDate !== undefined">
+          {{booked.fromDate! | date : 'dd.MM.yyyy'}} - {{booked.toDate! | date : 'dd.MM.yyyy'}}
         </p>
-        <p class="card-text text-secondary" *ngIf="device.bookData.toDate === undefined">
-          с {{device.bookData.fromDate! | date : 'dd.MM.yyyy'}}
+        <p class="card-text text-secondary" *ngIf="booked.toDate === undefined">
+          с {{booked.fromDate! | date : 'dd.MM.yyyy'}}
         </p>
-        <button type="button" (click)="remove(device.id)" class="btn btn-sm btn-danger">
+        <button type="button" (click)="remove(booked.id)" class="btn btn-sm btn-danger">
           Завершить бронь
         </button>
         <ng-template #content let-modal>
@@ -34,7 +44,36 @@
   </div>
 </div>
 
-<ng-template #skeleton>
+<div class="h2 mt-4">История бронирования</div>
+<hr/>
+<div class="row mt-3" *ngIf="isCardsLoaded; else skeleton_cards">
+  <div *ngFor="let book of deviceHistory" class="col-sm-12 col-md-6 col-lg-3">
+    <div class="card">
+      <img class="card-img-top" [routerLink]="'/device/'+book.device.slug" [src]="book.device.croppedImage" alt="no"/>
+      <div class="card-body">
+        <a class="card-title h4 text-dark" [routerLink]="'/device/'+book.device.slug">{{ book.device.title }}</a>
+        <p class="text-secondary">{{ book.fromDate | date : 'dd.MM.yyyy' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton_profile>
+  <div class="loading-skeleton">
+    <div class="row">
+      <div class="col-1">
+        <img [src]="currentUser.avatarUrl" class="img-thumbnail rounded" alt="Аватар">
+      </div>
+      <div class="col-11">
+        <h1 class="h1">ФИ</h1>
+        <h2 class="">Почта</h2>
+      </div>
+    </div>
+    <hr/>
+    <h2 class="mt-4">Забронированные устройства</h2>
+  </div>
+</ng-template>
+<ng-template #skeleton_cards>
   <div class="row mt-3 loading-skeleton">
     <div *ngFor="let device of [1, 2, 3, 4]" class="col-sm-12 col-md-6 col-lg-3">
       <div class="card">

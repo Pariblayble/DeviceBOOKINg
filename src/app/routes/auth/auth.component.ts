@@ -13,6 +13,15 @@ export class AuthComponent implements OnInit {
   public loginForm!: FormGroup;
   private returnUrl!: string;
 
+  get isEmailInvalid() {
+    return this.loginForm.controls['email'].invalid && this.loginForm.controls['email'].touched;
+  }
+
+  get isPasswordInvalid() {
+    return this.loginForm.controls['password'].invalid && this.loginForm.controls['password'].touched;
+  }
+
+
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,

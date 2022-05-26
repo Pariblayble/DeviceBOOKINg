@@ -1,10 +1,9 @@
-import {HttpClient} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {ICategory, User} from '../../interfaces/interfaces';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../auth/auth.service';
+import {ICategory, IDevice, IUserCredentials} from '../../interfaces/interfaces';
 import {Title} from '@angular/platform-browser';
 import {fakeDevice} from "../../_skeleton/device-card";
+import {CategoryService} from "../../services/category.service";
+import {DeviceService} from "../../services/device.service";
 
 @Component({
   selector: 'app-categories',
@@ -13,37 +12,33 @@ import {fakeDevice} from "../../_skeleton/device-card";
 })
 export class CategoriesComponent implements OnInit {
   categories!: ICategory[];
-  public bookForm!: FormGroup;
-  currentUser!: User;
+  currentUser!: IUserCredentials;
   dataLoaded = false;
   fakeDevice = fakeDevice;
+  devices: { [key: string]: IDevice[]; } = {};
 
   constructor(
-    private _http: HttpClient,
-    private authService: AuthService,
     private titleService: Title,
+    private categoryService: CategoryService,
+    private deviceService: DeviceService
   ) {
     this.titleService.setTitle('Все устройства');
-    this.authService.currentUser.subscribe((x) => (this.currentUser = x!));
+    this.categoryService
+      .getAllCategories()
+      .subscribe((categories: ICategory[]) => {
+        this.categories = categories;
+        categories.forEach((category, index) => {
+          this.deviceService.getDevicesByCategoryId(category.id, 1, 4).subscribe(x => {
+            this.devices[category.id] = x;
+            if (index == categories.length - 1) {
+              this.dataLoaded = true;
+            }
+          });
+        })
+      });
   }
 
   ngOnInit(): void {
-    this.bookForm = new FormGroup({
-      needCharge: new FormControl(false, [Validators.required]),
-      cumments: new FormControl(''),
-      id: new FormControl(),
-    });
 
-    const b = JSON.parse(localStorage.getItem('currentUser') as string);
-    this._http
-      .get<ICategory[]>('http://localhost:3000/categories?_embed=devices', {
-        headers: {
-          authorization: `Bearer ${b.accessToken}`,
-        },
-      })
-      .subscribe((x: ICategory[]) => {
-        this.categories = x;
-        this.dataLoaded = true;
-      });
   }
 }

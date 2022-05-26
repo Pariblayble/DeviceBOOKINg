@@ -1,4 +1,4 @@
-<div *ngIf="dataLoaded; else skeleton">
+<div *ngIf="categoryLoaded; else skeleton_category">
   <div class="h1">{{category.title}}</div>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -7,21 +7,25 @@
     </ol>
   </nav>
   <hr/>
-  <div *ngIf="category.devices.length > 0; else not_found">
+</div>
+<div *ngIf="devicesLoaded; else skeleton_devices">
+  <div *ngIf="devices.length > 0; else not_found">
     <div class="row my-3">
-      <div *ngFor="let device of category.devices" class="col-sm-12 col-md-6 col-lg-3">
+      <div *ngFor="let device of devices" class="col-sm-12 col-md-6 col-lg-3">
         <app-category-device-card [device]="device"></app-category-device-card>
       </div>
     </div>
   </div>
+  <div *ngIf="!showLoadMoreSkeleton; else skeleton_devices"></div>
+  <div class="text-center mt-4" *ngIf="showLoadMoreButton">
+    <button (click)="loadMore()" class="btn btn-primary">Загрузить ещё</button>
+  </div>
 </div>
-
-
 <ng-template #not_found>
   <h1>Упс, ничего не найдено :(</h1>
 </ng-template>
 
-<ng-template #skeleton>
+<ng-template #skeleton_category>
   <div class="loading-skeleton">
     <h3>Категория</h3>
     <nav aria-label="breadcrumb">
@@ -31,8 +35,15 @@
       </ol>
     </nav>
     <hr/>
+  </div>
+</ng-template>
+
+<ng-template #skeleton_devices>
+  <div class="loading-skeleton">
     <div class="row mt-3">
-      <div *ngFor="let device of [fakeDevice, fakeDevice, fakeDevice, fakeDevice]" class="col-sm-12 col-md-6 col-lg-3">
+      <div
+        *ngFor="let device of [fakeDevice,fakeDevice, fakeDevice,fakeDevice,fakeDevice, fakeDevice, fakeDevice, fakeDevice]"
+        class="col-sm-12 col-md-6 col-lg-3">
         <app-category-device-card [device]="device"></app-category-device-card>
       </div>
     </div>

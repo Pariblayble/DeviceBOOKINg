@@ -30,6 +30,7 @@ import {BookButtonComponent} from "./routes/components/book-button/book-button.c
     DeviceCardComponent,
     DeviceComponent,
     BookButtonComponent,
+    DeviceCardComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,80 +1,63 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { IDevice, User } from '../../interfaces/interfaces';
-import { updateDevice } from "../../../services/device.service";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { Title } from "@angular/platform-browser";
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {IBookedDevice, IUser, IUserCredentials} from '../../interfaces/interfaces';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Title} from "@angular/platform-browser";
+import {UserService} from "../../services/user.service";
+import {BookingService} from "../../services/booking.service";
 
 @Component({
-    selector: 'app-profile',
-    templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-    currentCards!: IDevice[];
-    dataLoaded = false;
-    currentUser: User = {
-        name: '',
-        email: '',
-        id: 0,
-        password: '',
-        secondName: '',
-        accessToken: '',
-    };
+  credentials!: IUserCredentials;
+  currentCards!: IBookedDevice[];
+  deviceHistory!: IBookedDevice[];
+  isCardsLoaded = false;
+  isProfileLoaded = false;
+  currentUser: IUser = {
+    name: '',
+    email: '',
+    id: 0,
+    secondName: '',
+    avatarUrl: '',
+  };
 
-    constructor(private authService: AuthService, private _http: HttpClient, private modalService: NgbModal, private titleService: Title) {
-        this.authService.currentUser.subscribe((x) => {
-            this.currentUser = x!;
-        });
-        this.titleService.setTitle('Профиль ' + this.currentUser.email);
-    }
+  constructor(
+    private userService: UserService,
+    private bookingService: BookingService,
+    private modalService: NgbModal,
+    private titleService: Title,
+  ) {
+  }
 
-    append(id: number) {
-        return updateDevice(id, {},
-            this.currentUser.accessToken!,
-            () => {
-                this.currentCards = this.currentCards.filter(x => x.id !== id);
-            },
-            this._http
-        )
-    }
 
-    remove(id: number) {
-        return updateDevice(id!, {
-            bookData: {
-                userId: null,
-                comments: "",
-                toDate: null,
-                needCharge: false,
-                fromDate: null,
-            }
-        },
-            this.currentUser.accessToken!,
-            () => {
-                this.currentCards = this.currentCards.filter(x => x.id !== id);
-            },
-            this._http
-        )
-    }
+  ngOnInit(): void {
+    this.userService.getUser().subscribe((user: IUser) => {
+      this.currentUser = user;
+      this.isProfileLoaded = true;
+      this.titleService.setTitle('Профиль ' + this.currentUser.email);
+    });
+    this.bookingService.getBookedUser().subscribe(x => {
+      this.currentCards = x.filter(x => !x.isEnded);
+      this.deviceHistory = x.filter(x => x.isEnded);
+      this.isCardsLoaded = true;
+    });
+  }
 
-    ngOnInit(): void {
-        this._http
-            .get<IDevice[]>('http://localhost:3000/devices?bookData.userId=' + this.currentUser.id, {
-                headers: {
-                    authorization: `Bearer ${this.currentUser.accessToken}`,
-                },
-            })
-            .subscribe((x: IDevice[]) => {
-                this.currentCards = x;
-                this.dataLoaded = true;
-            });
-    }
+  remove(id: number) {
+    const bookedDevice = this.currentCards.find(x => x.id === id);
+    this.currentCards = this.currentCards.filter(x => x.id !== id);
+    this.deviceHistory = [...this.deviceHistory, bookedDevice!];
+    return this.bookingService.endBook(id!).subscribe();
+  }
 
-    open(content: TemplateRef<any>, id: number) {
-        this.modalService.open(content, {
-            ariaLabelledBy: 'modal-basic-title',
-            size: 'lg',
-        });
-    }
+
+  open(content: TemplateRef<any>) {
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+      size: 'lg',
+    });
+  }
 }

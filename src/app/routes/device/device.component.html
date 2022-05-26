@@ -2,7 +2,8 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/categories">Все устройства</a></li>
-      <li class="breadcrumb-item"><a [routerLink]="'/category/'+device.category!.slug">{{device.category!.title}}</a>
+      <li class="breadcrumb-item">
+        <a [routerLink]="'/category/'+device.category!.slug">{{device.category!.title}}</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">{{device.title}}</li>
     </ol>
@@ -10,6 +11,9 @@
   <div class="row mt-5">
     <div class="col-lg-4 col-md-6 col-sm-12">
       <img class="img-fluid" src="{{device.fullImage}}" alt="no">
+      <div class="text-center mt-5">
+        <app-book-button type="lg" [device]="device"></app-book-button>
+      </div>
     </div>
     <div class="col-lg-8 col-sm-12 col-md-6">
       <div class="h1">{{device.title}}</div>
@@ -23,7 +27,6 @@
         </div>
         <div class="col-lg-7 col-md-12 col-sm-12 mt-sm-3 mt-md-3 mt-lg-0">
           <p class="">{{device.description}}</p>
-          <app-book-button type="lg" [device]="device"></app-book-button>
         </div>
       </div>
     </div>

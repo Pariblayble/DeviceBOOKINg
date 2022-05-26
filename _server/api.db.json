@@ -1,10 +1,61 @@
 {
+  "history": [
+    {
+      "id": 1,
+      "userId": 1,
+      "deviceId": 1,
+      "bookedAt": 0
+    },
+    {
+      "userId": 1,
+      "deviceId": 2,
+      "id": 2,
+      "bookedAt": 0
+    },
+    {
+      "userId": 1,
+      "deviceId": 4,
+      "id": 3,
+      "bookedAt": 0
+    },
+    {
+      "userId": 1,
+      "deviceId": 2,
+      "bookedAt": 1652988036781,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "deviceId": 1,
+      "bookedAt": 1653162139944,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "deviceId": 12,
+      "bookedAt": 1653162735140,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "deviceId": 1,
+      "bookedAt": 1653237674026,
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "deviceId": 1,
+      "bookedAt": 1653324241408,
+      "id": 8
+    }
+  ],
   "users": [
     {
       "id": 1,
       "name": "Ксения",
       "secondName": "Сонина",
       "email": "gena.chid@mail.ru",
+      "avatarUrl": "https://i.ibb.co/7j8czxD/fafa198894f1b8a825743ba8f35a147d-1.webp",
       "password": "krasivieGlaza"
     },
     {
@@ -12,6 +63,7 @@
       "name": "Никита",
       "secondName": "Боярский",
       "email": "Nikita@sun.ru",
+      "avatarUrl": "https://i.ibb.co/gwXxFtN/495e8826-6eb9-4079-8925-329cc7ce2a7e.jpg",
       "password": "fizTehTop"
     }
   ],
@@ -25,6 +77,38 @@
       "title": "Планшеты",
       "slug": "tablets",
       "id": 2
+    }
+  ],
+  "bookedDevices": [
+    {
+      "id": 1,
+      "userId": 2,
+      "comments": "Я люблю решать многочлены",
+      "needCharge": true,
+      "deviceId": 3,
+      "fromDate": 1656356400000,
+      "toDate": 1656702000000,
+      "isEnded": true
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 2,
+      "fromDate": 1657134000000,
+      "toDate": 1657220400000,
+      "isEnded": true
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 2,
+      "fromDate": 1657911600000,
+      "toDate": 1657998000000,
+      "isEnded": true
     }
   ],
   "devices": [
@@ -61,56 +145,7 @@
           "details": "50/8/2/2"
         }
       ],
-      "categoryId": 1,
-      "bookData": {
-        "userId": 1,
-        "comments": "",
-        "needCharge": false,
-        "fromDate": 1655233200000,
-        "toDate": 1656097200000
-      }
-    },
-    {
-      "id": 4,
-      "title": "IPhone 13 Pro",
-      "slug": "iphone-13-pro",
-      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/480/30059054b.jpg",
-      "fullImage": "https://img.mvideo.ru/Big/30059054bb.jpg",
-      "description": "iPhone 13 Pro. Новые камеры. Нереальные возможности.\n\niPhone 13 Pro. Грандиозный апгрейд камер Pro. Режим «Киноэффект» делает из видео настоящее кино. Дисплей Super Retina XDR с технологией ProMotion для более быстрого и плавного взаимодействия. А15 Bionic — самый быстрый чип для iPhone. Прочный корпус и огромный прирост ресурса аккумулятора.",
-      "specs": [
-        {
-          "title": "OS",
-          "details": "iOS 15.4.1"
-        },
-        {
-          "title": "Экран",
-          "details": "6.1\"/2532x1170 Пикс"
-        },
-        {
-          "title": "Технология экрана",
-          "details": "OLED"
-        },
-        {
-          "title": "Тип процессора",
-          "details": "A15 Bionic"
-        },
-        {
-          "title": "Встроенная память (ROM)",
-          "details": "128 ГБ"
-        },
-        {
-          "title": "Основная камера МПикс",
-          "details": "12/12/12"
-        }
-      ],
-      "categoryId": 1,
-      "bookData": {
-        "userId": null,
-        "comments": "",
-        "toDate": null,
-        "needCharge": false,
-        "fromDate": null
-      }
+      "categoryId": 1
     },
     {
       "id": 2,
@@ -145,14 +180,7 @@
           "details": "108/8/2/2"
         }
       ],
-      "categoryId": 1,
-      "bookData": {
-        "userId": 1,
-        "comments": "",
-        "needCharge": false,
-        "fromDate": 1655233200000,
-        "toDate": 1656097200000
-      }
+      "categoryId": 1
     },
     {
       "id": 3,
@@ -187,14 +215,42 @@
           "details": "12/12/TOF"
         }
       ],
-      "categoryId": 1,
-      "bookData": {
-        "userId": null,
-        "comments": "",
-        "toDate": null,
-        "needCharge": false,
-        "fromDate": null
-      }
+      "categoryId": 1
+    },
+    {
+      "id": 4,
+      "title": "IPhone 13 Pro",
+      "slug": "iphone-13-pro",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/480/30059054b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30059054bb.jpg",
+      "description": "iPhone 13 Pro. Новые камеры. Нереальные возможности.\n\niPhone 13 Pro. Грандиозный апгрейд камер Pro. Режим «Киноэффект» делает из видео настоящее кино. Дисплей Super Retina XDR с технологией ProMotion для более быстрого и плавного взаимодействия. А15 Bionic — самый быстрый чип для iPhone. Прочный корпус и огромный прирост ресурса аккумулятора.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "iOS 15.4.1"
+        },
+        {
+          "title": "Экран",
+          "details": "6.1\"/2532x1170 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "OLED"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "A15 Bionic"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "128 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "12/12/12"
+        }
+      ],
+      "categoryId": 1
     },
     {
       "id": 5,
@@ -229,14 +285,7 @@
           "details": "8"
         }
       ],
-      "categoryId": 2,
-      "bookData": {
-        "userId": null,
-        "comments": "",
-        "toDate": null,
-        "needCharge": false,
-        "fromDate": null
-      }
+      "categoryId": 2
     },
     {
       "id": 6,
@@ -271,14 +320,7 @@
           "details": "12/10"
         }
       ],
-      "categoryId": 2,
-      "bookData": {
-        "userId": 2,
-        "comments": "Я повар",
-        "needCharge": true,
-        "fromDate": 1654887600000,
-        "toDate": 1655406000000
-      }
+      "categoryId": 2
     }
   ]
 }

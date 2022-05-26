@@ -1,52 +1,51 @@
-<button type="button" class="btn btn-{{type}} btn-primary" (click)="open(content)"
-    *ngIf="device.bookData.userId === null">Забронировать
-</button>
-<button type="button" class="btn btn-{{type}} btn-secondary" (click)="open(content)"
-    *ngIf="device.bookData.userId !== null && currentUser.id !== device.bookData.userId" disabled="true">Забронировано
-</button>
-<button type="button" class="btn btn-{{type}} btn-success" (click)="open(content)"
-    *ngIf="device.bookData.userId !== null && currentUser.id === device.bookData.userId" [disabled]="true">Забронировано
-    вами
+<button *ngIf="isBooked" disabled="true" class="btn btn-{{type}} btn-success">Вы уже забронировали</button>
+<button type="submit" (click)="open(content)" *ngIf="!isBooked" class="btn btn-{{type}} btn-primary">
+  Забронировать
 </button>
 
 <ng-template #content let-modal>
-    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Бронирование {{ device.title }}</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-        </div>
-        <div class="modal-body">
-            <p class="mb-3 lead">Примерное время брони</p>
-            <div class="container mb-3 col-sm-12 col-md-12 col-lg-8">
-                <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
-                    outsideDays="hidden">
-                </ngb-datepicker>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Бронирование {{ device.title }}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <p class="mb-3 lead">Примерное время брони</p>
+      <div class="container mb-3 col-sm-12 col-md-12 col-lg-8">
+        <ngb-datepicker #dp
+                        [markDisabled]="isDisabled"
+                        [minDate]="calendar.getToday()"
+                        (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
+                        outsideDays="hidden">
+        </ngb-datepicker>
 
-                <ng-template #t let-date let-focused="focused">
+        <ng-template #t let-date let-focused="focused">
                     <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                        [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-                        (mouseleave)="hoveredDate = null">
+                          [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                          (mouseleave)="hoveredDate = null">
                         {{ date.day }}
                     </span>
-                </ng-template>
-            </div>
-            <div class="form-group">
-                <p class="mb-3 lead">
-                    <input type="checkbox" value="withPower" formControlName="needCharge" id="get">
-                    <label for="get" class="ms-2">Взять зарядное устройство</label>
-                </p>
-            </div>
-            <div class="form-group">
-                <label for="comment" class="mb-2 lead">Дополнительные комментарии:</label>
-                <textarea class="form-control" id="comment" formControlName="cumments"></textarea>
-            </div>
+        </ng-template>
+        <div class="text-danger" *ngIf="errorMessage">
+          {{errorMessage}}
         </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-dark" *ngIf="!device.bookData.userId">Забронировать
-            </button>
-            <button type="submit" class="btn btn-success" *ngIf="!!device.bookData.userId" disabled="true">Забронировано
-                вами
-            </button>
-        </div>
-    </form>
+      </div>
+      <div class="form-group">
+        <p class="mb-3 lead">
+          <input type="checkbox" value="withPower" formControlName="needCharge" id="get">
+          <label for="get" class="ms-2">Взять зарядное устройство</label>
+        </p>
+      </div>
+      <div class="form-group">
+        <label for="comment" class="mb-2 lead">Дополнительные комментарии:</label>
+        <textarea class="form-control" id="comment" formControlName="cumments"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button *ngIf="isBooked" disabled="true" class="btn btn-success">Вы уже забронировали</button>
+      <button type="submit" *ngIf="!isBooked" [disabled]="errorMessage" class="btn btn-primary">
+        Забронировать
+      </button>
+    </div>
+  </form>
 </ng-template>

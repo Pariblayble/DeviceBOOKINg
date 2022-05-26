@@ -20,21 +20,20 @@ server.use(bodyParser.json());
 server.use(middlewares);
 
 server.post('/auth/login', (req, res) => {
-  const payload: { email: string; password: string } = {
-    email: req.body.email,
-    password: req.body.password,
-  };
+
   const user: { id: number; email: string; password: string } | null =
     (jsonRouter.db.get('users') as any)
-      .find({email: payload.email, password: payload.password})
+      .find({email: req.body.email, password: req.body.password})
       .value() ?? null;
 
   if (user) {
+    const payload = {
+      id: user.id
+    };
     const accessToken = jwt.sign(payload, JWT_SECRET_KEY, {
       expiresIn: JWT_EXPIRES_IN,
     });
-    const {password, ...other} = user;
-    res.status(200).json({accessToken, ...other});
+    res.status(200).json({accessToken});
   } else {
     const message = 'Incorrect username or password';
     res.status(401).json({message});
