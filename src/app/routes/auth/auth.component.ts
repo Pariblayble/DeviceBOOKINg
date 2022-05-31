@@ -13,12 +13,14 @@ export class AuthComponent implements OnInit {
   public loginForm!: FormGroup;
   private returnUrl!: string;
 
+  private isRequestFailed = false;
+
   get isEmailInvalid() {
-    return this.loginForm.controls['email'].invalid && this.loginForm.controls['email'].touched;
+    return this.loginForm.controls['email'].invalid && this.loginForm.controls['email'].touched || this.isRequestFailed;
   }
 
   get isPasswordInvalid() {
-    return this.loginForm.controls['password'].invalid && this.loginForm.controls['password'].touched;
+    return this.loginForm.controls['password'].invalid && this.loginForm.controls['password'].touched || this.isRequestFailed;
   }
 
 
@@ -44,13 +46,15 @@ export class AuthComponent implements OnInit {
 
   public onSubmit() {
     this._authService
-      .logIn(this.loginForm.value.email, this.loginForm.value.password)
+  .logIn(this.loginForm.value.email, this.loginForm.value.password)
       .pipe(first())
       .subscribe(
         (data) => {
+          this.isRequestFailed = false;
           this._router.navigate([this.returnUrl]);
         },
         (error) => {
+          this.isRequestFailed = true;
         }
       );
   }

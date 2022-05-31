@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IDevice} from '../../../interfaces/interfaces';
 
 @Component({
-  selector: 'app-category-device-card',
+  selector: 'app-device-card',
   templateUrl: './device-card.component.html',
   styleUrls: ['./device-card.component.scss'],
 })

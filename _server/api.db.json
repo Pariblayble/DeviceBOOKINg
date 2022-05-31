@@ -109,6 +109,176 @@
       "fromDate": 1657911600000,
       "toDate": 1657998000000,
       "isEnded": true
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 2,
+      "fromDate": 1657825200000,
+      "toDate": 1658516400000,
+      "isEnded": true
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 2,
+      "fromDate": 1657738800000,
+      "toDate": 1658602800000,
+      "isEnded": true
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 2,
+      "fromDate": 1657825200000,
+      "toDate": 1658602800000,
+      "isEnded": false
+    },
+    {
+      "id": 7,
+      "userId": 1,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 1,
+      "fromDate": 1657825200000,
+      "toDate": 1659121200000,
+      "isEnded": false
+    },
+    {
+      "id": 8,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 1,
+      "fromDate": 1656615600000,
+      "toDate": 1657738800000,
+      "isEnded": true
+    },
+    {
+      "id": 9,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 3,
+      "fromDate": 1657134000000,
+      "toDate": 1657306800000,
+      "isEnded": true
+    },
+    {
+      "id": 10,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 3,
+      "fromDate": 1657825200000,
+      "toDate": 1657998000000,
+      "isEnded": true
+    },
+    {
+      "id": 11,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 3,
+      "fromDate": 1658343600000,
+      "toDate": 1658516400000,
+      "isEnded": true
+    },
+    {
+      "id": 12,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 2,
+      "fromDate": 1657220400000,
+      "toDate": 1657479600000,
+      "isEnded": true
+    },
+    {
+      "id": 13,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 1,
+      "fromDate": 1657306800000,
+      "toDate": 1657479600000,
+      "isEnded": true
+    },
+    {
+      "id": 14,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 3,
+      "fromDate": 1657306800000,
+      "toDate": 1658084400000,
+      "isEnded": true
+    },
+    {
+      "id": 15,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 4,
+      "fromDate": 1656702000000,
+      "toDate": 1658602800000,
+      "isEnded": true
+    },
+    {
+      "id": 16,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 2,
+      "fromDate": 1657220400000,
+      "toDate": 1657393200000,
+      "isEnded": true
+    },
+    {
+      "id": 17,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 3,
+      "fromDate": 1657220400000,
+      "toDate": 1657998000000,
+      "isEnded": true
+    },
+    {
+      "id": 18,
+      "userId": 2,
+      "comments": "",
+      "needCharge": false,
+      "deviceId": 1,
+      "fromDate": 1657047600000,
+      "toDate": 1657134000000,
+      "isEnded": true
+    },
+    {
+      "id": 19,
+      "userId": 2,
+      "comments": "",
+      "needCharge": true,
+      "deviceId": 4,
+      "fromDate": 1657911600000,
+      "toDate": 1657998000000,
+      "isEnded": true
+    },
+    {
+      "id": 20,
+      "userId": 2,
+      "comments": "",
+      "needCharge": true,
+      "deviceId": 2,
+      "fromDate": 1657220400000,
+      "toDate": 1657393200000,
+      "isEnded": false
     }
   ],
   "devices": [
@@ -321,6 +491,251 @@
         }
       ],
       "categoryId": 2
+    },
+    {
+      "id": 7,
+      "title": "iPhone 11",
+      "slug": "iphone-11",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/200/30052947b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30052947bb.jpg",
+      "description": "iPhone 11. Крутая классика для крутых мужыков.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "iOS 13.4.1"
+        },
+        {
+          "title": "Экран",
+          "details": "6.1\"/1792x828 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "IPS"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "A13 Bionic"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "128 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "12/12"
+        }
+      ],
+      "categoryId": 1
+    },
+    {
+      "id": 8,
+      "title": "Samsung Galaxy A22s",
+      "slug": "samsung-galaxy-a22s",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/480/30060746b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30060746bb.jpg",
+      "description": "Смартфон Samsung Galaxy A22s – удачное сочетание высокой производительности и базовых опций. Модель получила стильный дизайн, безрамочный дисплей диагональю 6,6 дюйма, а также 128 Гб встроенной памяти. Она даёт возможность хранить фотографии, видеозаписи, устанавливать объёмные игры и скачивать файлы из Сети. Девайс порадует быстротой обработки данных и продолжительной автономностью.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "Android 11"
+        },
+        {
+          "title": "Экран",
+          "details": "6.6\"/2408x1080 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "TFT"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "Mediatek Dimensity 700 5G 2 x 2.2 ГГц + 6 x 2 ГГц"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "128 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "48/5/2/TOF"
+        }
+      ],
+      "categoryId": 1
+    },
+    {
+      "id": 9,
+      "title": "iPhone XR",
+      "slug": " iphone-xr",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/200/30052926b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30059054bb.jpg",
+      "description": "iPhone 13 Pro. Новые камеры. Нереальные возможности.\n\niPhone 13 Pro. Грандиозный апгрейд камер Pro. Режим «Киноэффект» делает из видео настоящее кино. Дисплей Super Retina XDR с технологией ProMotion для более быстрого и плавного взаимодействия. А15 Bionic — самый быстрый чип для iPhone. Прочный корпус и огромный прирост ресурса аккумулятора.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "iOS 12.5.3"
+        },
+        {
+          "title": "Экран",
+          "details": "6.1\"/1792x828 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "IPS"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "A12 Bionic"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "64 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "12"
+        }
+      ],
+      "categoryId": 1
+    },
+    {
+      "id": 10,
+      "title": "Realme 8i",
+      "slug": "realme-8i",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/200/30059567b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30059567bb.jpg",
+      "description": "Realme 8i – высокопроизводительный смартфон с операционной системой Android, которым просто и удобно пользоваться. БОЛЬШОЙ ЭКРАН. Диагональ безрамочного дисплея составляет 6,6 дюйма, а разрешение – 2412 х 1080 пикселей. Он реалистично передаёт цвета и обеспечивает превосходную детализацию – вы легко разглядите мелкие подробности. Изображение обновляется с частотой 120 Гц, что обеспечивает особенно плавное воспроизведение динамичных сцен в играх.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "Android 11"
+        },
+        {
+          "title": "Экран",
+          "details": "6.6\"/2412x1080 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "LCD"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "Mediatek Helio G96 2 x 2.05 ГГц + 6 x 2 ГГц"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "64 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "50/2/2"
+        }
+      ],
+      "categoryId": 1
+    },
+    {
+      "id": 11,
+      "title": "Vivo V21e",
+      "slug": "vivo-v21e",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/200/30057696b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30057696bb.jpg",
+      "description": "Смартфон Vivo V21е оснащен тремя основными и одной фронтальной камерой. Есть вспышка, оптическая и цифровая стабилизация кадра, цифровой зум. Экран у смартфона безрамочный, изготовлен на основе технологии AMOLED. Устройство снабжено восьмиядерным процессором Mediatek Dimensity 800U.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "Android 11"
+        },
+        {
+          "title": "Экран",
+          "details": "6.44\"/2400x1080 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "AMOLED"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "Qualcomm Snapdragon 720G 2 x 2.4 ГГц + 6 x 1.8 ГГц"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "128 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "64/8/2"
+        }
+      ],
+      "categoryId": 1
+    },
+    {
+      "id": 12,
+      "title": "POCO F3",
+      "slug": "poco-f3",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/200/30056753b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30056753bb.jpg",
+      "description": "В смартфоне Poco F3 установлен восьмиядерный процессор Qualcomm Snapdragon 870 флагманского уровня. В сочетании с 8 Гб оперативной памяти он обеспечивает высочайшую производительность. Сложно представить себе задачу, с которой не справится такое железо.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "Android 11"
+        },
+        {
+          "title": "Экран",
+          "details": "6.67\"/1080x2400 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "AMOLED"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "Qualcomm Snapdragon 870 3.2 ГГц"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "256 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "48/8/5"
+        }
+      ],
+      "categoryId": 1
+    },
+    {
+      "id": 13,
+      "title": "IPhone 13 Pro",
+      "slug": "iphone-13-pro",
+      "croppedImage": "https://img.mvideo.ru/Pdb/small_pic/200/30049668b.jpg",
+      "fullImage": "https://img.mvideo.ru/Big/30049668bb.jpg",
+      "description": "Huawei Y5p – стильный и производительный смартфон на основе восьмиядерного процессора Mediatek MT6762R и 2 Гб оперативной памяти. Девайс легко справляется с любыми задачами – от рабочих до развлекательных.",
+      "specs": [
+        {
+          "title": "OS",
+          "details": "Android 10"
+        },
+        {
+          "title": "Экран",
+          "details": "5.45\"/1440x720 Пикс"
+        },
+        {
+          "title": "Технология экрана",
+          "details": "IPS"
+        },
+        {
+          "title": "Тип процессора",
+          "details": "Mediatek MT6762R 4 x 2.0ГГц + 4 x 1.5ГГц"
+        },
+        {
+          "title": "Встроенная память (ROM)",
+          "details": "32 ГБ"
+        },
+        {
+          "title": "Основная камера МПикс",
+          "details": "8"
+        }
+      ],
+      "categoryId": 1
     }
   ]
 }

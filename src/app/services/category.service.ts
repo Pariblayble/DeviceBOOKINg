@@ -13,18 +13,15 @@ export class CategoryService {
 
   constructor(private authService: AuthService, private http: HttpClient, private jwtService: JwtService) {
     this.authService.currentUser.subscribe(x => {
-      this.accessToken = x!.accessToken;
-      const {id} = this.jwtService.decode<{ id: number }>(x!.accessToken);
-      this.ownerId = id;
+      this.accessToken = x?.accessToken || '';
+      if (this.accessToken) {
+        const {id} = this.jwtService.decode<{ id: number }>(x!.accessToken);
+        this.ownerId = id;
+      }
     })
   }
 
   getCategoryBySlug(slug: string, embed: string[] = []) {
-    const httpOptions = {
-      headers: {
-        authorization: `Bearer ${this.accessToken}`,
-      },
-    };
     const query = new URLSearchParams();
     query.append('slug', slug);
     if (embed.length) {
@@ -33,15 +30,10 @@ export class CategoryService {
       })
     }
     return this.http
-      .get<ICategory[]>('http://localhost:3000/categories?' + query.toString(), httpOptions)
+      .get<ICategory[]>('http://localhost:3000/categories?' + query.toString())
   }
 
   getAllCategories(embed: string[] = []) {
-    const httpOptions = {
-      headers: {
-        authorization: `Bearer ${this.accessToken}`,
-      },
-    };
     const query = new URLSearchParams();
     if (embed.length) {
       embed.forEach(x => {
@@ -49,6 +41,6 @@ export class CategoryService {
       })
     }
     return this.http
-      .get<ICategory[]>('http://localhost:3000/categories?' + query.toString(), httpOptions)
+      .get<ICategory[]>('http://localhost:3000/categories?' + query.toString())
   }
 }

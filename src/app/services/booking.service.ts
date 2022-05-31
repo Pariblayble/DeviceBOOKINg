@@ -13,9 +13,11 @@ export class BookingService {
 
   constructor(private authService: AuthService, private http: HttpClient, private jwtService: JwtService) {
     this.authService.currentUser.subscribe(x => {
-      this.accessToken = x!.accessToken;
-      const {id} = this.jwtService.decode<{ id: number }>(x!.accessToken);
-      this.ownerId = id;
+      this.accessToken = x?.accessToken || '';
+      if (this.accessToken) {
+        const {id} = this.jwtService.decode<{ id: number }>(x!.accessToken);
+        this.ownerId = id;
+      }
     })
   }
 
@@ -23,29 +25,16 @@ export class BookingService {
     return this.http
       .patch<IBookedDevice[]>('http://localhost:3000/bookedDevices/' + id, {
         isEnded: true,
-      },{
-        headers: {
-          authorization: `Bearer ${this.accessToken}`,
-        },
       })
   }
 
   getBookedUser() {
     return this.http
-      .get<IBookedDevice[]>('http://localhost:3000/bookedDevices?_expand=device&userId=' + this.ownerId, {
-        headers: {
-          authorization: `Bearer ${this.accessToken}`,
-        },
-      })
+      .get<IBookedDevice[]>('http://localhost:3000/bookedDevices?_expand=device&userId=' + this.ownerId, {})
   }
 
   bookDevice(data: Omit<IBookedDevice, 'device'>) {
-    const httpOptions = {
-      headers: {
-        authorization: `Bearer ${this.accessToken}`,
-      },
-    };
     return this.http
-      .post('http://localhost:3000/bookedDevices?', data, httpOptions)
+      .post('http://localhost:3000/bookedDevices?', data)
   }
 }

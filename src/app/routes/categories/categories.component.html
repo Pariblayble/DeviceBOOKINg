@@ -5,7 +5,7 @@
     <a class="h4 text-dark" [routerLink]="'/category/'+category.slug">{{ category.title }}</a>
     <div class="row my-3">
       <div *ngFor="let device of devices[category.id]" class="col-sm-12 col-md-6 col-lg-3">
-        <app-category-device-card [device]="device"></app-category-device-card>
+        <app-device-card [device]="device"></app-device-card>
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
     <h3>Категория</h3>
     <div class="row mt-3">
       <div *ngFor="let device of [fakeDevice, fakeDevice, fakeDevice, fakeDevice]" class="col-sm-12 col-md-6 col-lg-3">
-        <app-category-device-card [device]="device"></app-category-device-card>
+        <app-device-card [device]="device"></app-device-card>
       </div>
     </div>
   </div>

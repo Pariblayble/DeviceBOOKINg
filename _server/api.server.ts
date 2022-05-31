@@ -20,7 +20,6 @@ server.use(bodyParser.json());
 server.use(middlewares);
 
 server.post('/auth/login', (req, res) => {
-
   const user: { id: number; email: string; password: string } | null =
     (jsonRouter.db.get('users') as any)
       .find({email: req.body.email, password: req.body.password})
@@ -35,15 +34,19 @@ server.post('/auth/login', (req, res) => {
     });
     res.status(200).json({accessToken});
   } else {
-    const message = 'Incorrect username or password';
+    const message = 'Неверные данные для входа';
     res.status(401).json({message});
   }
 });
 
 server.use(/^(?!\/auth).*$/, async (req, res, next) => {
+  let skip = false;
   // Для показа скелетонов
   if (req.method === "GET") {
     await sleep(1000);
+    if (req.basepath !== "/users")
+      next();
+    return;
   }
   if (
     req.headers.authorization === undefined ||

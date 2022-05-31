@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   public logIn(email: string, password: string): Observable<IUserCredentials> {
-    return this._http.post<any>('http://localhost:3000/auth/login', {email, password})
+    return this._http.post<IUserCredentials>('http://localhost:3000/auth/login', {email, password})
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user))
         this.currentUserSubject.next(user)

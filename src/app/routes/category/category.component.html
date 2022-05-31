@@ -12,7 +12,7 @@
   <div *ngIf="devices.length > 0; else not_found">
     <div class="row my-3">
       <div *ngFor="let device of devices" class="col-sm-12 col-md-6 col-lg-3">
-        <app-category-device-card [device]="device"></app-category-device-card>
+        <app-device-card [device]="device"></app-device-card>
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@
       <div
         *ngFor="let device of [fakeDevice,fakeDevice, fakeDevice,fakeDevice,fakeDevice, fakeDevice, fakeDevice, fakeDevice]"
         class="col-sm-12 col-md-6 col-lg-3">
-        <app-category-device-card [device]="device"></app-category-device-card>
+        <app-device-card [device]="device"></app-device-card>
       </div>
     </div>
   </div>

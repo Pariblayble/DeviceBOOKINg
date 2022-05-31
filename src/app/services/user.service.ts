@@ -20,10 +20,6 @@ export class UserService {
   getUser(): Observable<IUser> {
     const payload = this.jwtService.decode<{ id: number }>(this.accessToken);
     return this.http
-      .get<IUser>('http://localhost:3000/users/' + payload!.id, {
-        headers: {
-          authorization: `Bearer ${this.accessToken}`,
-        },
-      });
+      .get<IUser>('http://localhost:3000/users/' + payload!.id);
   }
 }

@@ -12,14 +12,16 @@ export class DeviceService {
   ownerId!: number;
 
   constructor(
-      private authService: AuthService, 
-      private http: HttpClient, 
-      private jwtService: JwtService, 
-      ) {
+    private authService: AuthService,
+    private http: HttpClient,
+    private jwtService: JwtService,
+  ) {
     this.authService.currentUser.subscribe(x => {
-      this.accessToken = x!.accessToken;
-      const {id} = this.jwtService.decode<{ id: number }>(x!.accessToken);
-      this.ownerId = id;
+      this.accessToken = x?.accessToken || '';
+      if (this.accessToken) {
+        const {id} = this.jwtService.decode<{ id: number }>(x!.accessToken);
+        this.ownerId = id;
+      }
     })
   }
 
@@ -32,11 +34,7 @@ export class DeviceService {
       query.append('_expand', x);
     })
     return this.http
-      .get<IDevice[]>('http://localhost:3000/devices?' + query.toString(), {
-        headers: {
-          authorization: `Bearer ${this.accessToken}`,
-        }
-      });
+      .get<IDevice[]>('http://localhost:3000/devices?' + query.toString());
   }
 
   getDevicesByCategoryId(id: number, page = 1, limit = 16, expand: string[] = []) {
@@ -49,19 +47,6 @@ export class DeviceService {
       query.append('_expand', x);
     })
     return this.http
-      .get<IDevice[]>('http://localhost:3000/devices?' + query.toString(), {
-        headers: {
-          authorization: `Bearer ${this.accessToken}`,
-        }
-      });
-  }
-
-  getUserDevices() {
-    return this.http
-      .get<IDevice[]>('http://localhost:3000/devices?bookData.userId=' + this.ownerId, {
-        headers: {
-          authorization: `Bearer ${this.accessToken}`,
-        },
-      })
+      .get<IDevice[]>('http://localhost:3000/devices?' + query.toString());
   }
 }

@@ -1,5 +1,6 @@
-<button *ngIf="isBooked" disabled="true" class="btn btn-{{type}} btn-success">Вы уже забронировали</button>
-<button type="submit" (click)="open(content)" *ngIf="!isBooked" class="btn btn-{{type}} btn-primary">
+<button *ngIf="!userId" routerLink="/auth/login" class="btn btn-{{type}} btn-primary">Забронировать</button>
+<button *ngIf="isBooked && userId" disabled="true" class="btn btn-{{type}} btn-success">Вы уже забронировали</button>
+<button type="submit" (click)="open(content)" *ngIf="!isBooked && userId" class="btn btn-{{type}} btn-primary">
   Забронировать
 </button>
 

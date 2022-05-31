@@ -1,4 +1,6 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "~angular-notifier/styles/core.css";
+@import "~angular-notifier/styles/themes/theme-material.css";
 
 /* You can add global styles to this file, and also import other style files */
 html {
@@ -56,6 +58,7 @@ a {
   display: inline-block;
   height: 2rem;
   width: 2rem;
+  transition: all 0.25s;
 }
 .custom-day.focused {
   background-color: #e6e6e6;

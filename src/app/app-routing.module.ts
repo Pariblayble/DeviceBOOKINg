@@ -10,13 +10,13 @@ import {DeviceComponent} from "./routes/device/device.component";
 const routes: Routes = [
   {path: 'login', component: AuthComponent},
   {
-    path: 'device/:slug', component: DeviceComponent, canActivate: [AuthGuard]
+    path: 'device/:slug', component: DeviceComponent, canActivate: []
   },
   {
-    path: 'category/:slug', component: CategoryComponent, canActivate: [AuthGuard]
+    path: 'category/:slug', component: CategoryComponent, canActivate: []
   },
   {
-    path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard]
+    path: 'categories', component: CategoriesComponent, canActivate: []
   },
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'login'},

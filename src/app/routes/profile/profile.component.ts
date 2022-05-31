@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  remove(id: number) {
+  remove = (id: number) => {
     const bookedDevice = this.currentCards.find(x => x.id === id);
     this.currentCards = this.currentCards.filter(x => x.id !== id);
     this.deviceHistory = [...this.deviceHistory, bookedDevice!];
@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  open(content: TemplateRef<any>) {
+  open(content: TemplateRef<void>) {
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
       size: 'lg',

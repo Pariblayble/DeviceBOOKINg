@@ -13,34 +13,7 @@
 <hr/>
 <div class="row mt-3" *ngIf="isCardsLoaded; else skeleton_cards">
   <div *ngFor="let booked of currentCards" class="col-sm-12 col-md-6 col-lg-3">
-    <div class="card">
-      <img class="card-img-top" [routerLink]="'/device/'+booked.device.slug" [src]="booked.device.croppedImage"
-           alt="no"/>
-      <div class="card-body">
-        <a class="card-title h4 text-dark" [routerLink]="'/device/'+booked.device.slug">{{ booked.device.title }}</a>
-        <p class="card-text">{{ booked.device.description | slice : 0:30}}...</p>
-        <p class="card-text text-secondary" *ngIf="booked.toDate !== undefined">
-          {{booked.fromDate! | date : 'dd.MM.yyyy'}} - {{booked.toDate! | date : 'dd.MM.yyyy'}}
-        </p>
-        <p class="card-text text-secondary" *ngIf="booked.toDate === undefined">
-          с {{booked.fromDate! | date : 'dd.MM.yyyy'}}
-        </p>
-        <button type="button" (click)="remove(booked.id)" class="btn btn-sm btn-danger">
-          Завершить бронь
-        </button>
-        <ng-template #content let-modal>
-          <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Продление аренды</h4>
-            <button type="button" class="btn-close" aria-label="Close"
-                    (click)="modal.dismiss('Cross click')"></button>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-dark">Продлить
-            </button>
-          </div>
-        </ng-template>
-      </div>
-    </div>
+    <app-booked-card [booked]="booked" [remove]="remove"></app-booked-card>
   </div>
 </div>
 

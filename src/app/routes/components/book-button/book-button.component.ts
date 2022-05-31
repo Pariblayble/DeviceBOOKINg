@@ -34,8 +34,10 @@ export class BookButtonComponent implements OnInit {
     public calendar: NgbCalendar
   ) {
     this.authService.currentUser.subscribe((x) => {
-      const payload = jwtService.decode<{ id: number }>(x!.accessToken);
-      this.userId = payload.id;
+      if (x?.accessToken) {
+        const payload = jwtService.decode<{ id: number }>(x!.accessToken);
+        this.userId = payload.id;
+      }
     })
   }
 
@@ -70,8 +72,16 @@ export class BookButtonComponent implements OnInit {
 
   isDisabled = (date: NgbDate, current?: { year: number; month: number; } | undefined) => {
     const bookedDevices = this.bookedDevices;
-    for (const x of bookedDevices!) {
-      const currentDate = new Date(date.year, date.month, date.day).getTime();
+    const date1 = new Date();
+    const date2 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate()).getTime();
+    const ended = bookedDevices.filter(x => {
+      return x.toDate > date2 || (!x.isEnded && x.toDate <= date2);
+    });
+    if (!ended.length) {
+      return false;
+    }
+    const currentDate = new Date(date.year, date.month, date.day).getTime();
+    for (const x of ended) {
       if ((currentDate >= x.fromDate) && (currentDate <= x.toDate)) {
         return x.isEnded != true;
       }
@@ -83,15 +93,10 @@ export class BookButtonComponent implements OnInit {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
     } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
-      const bookedDevices = this.bookedDevices;
-      for (const x of bookedDevices!) {
-        const currentDate = new Date(x.fromDate);
-        const b = new NgbDate(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-        if (this.fromDate.before(b) && date.after(b)) {
-          this.errorMessage = PickError.AlreadyPicked;
-          this.fromDate = date;
-          return
-        }
+      if (this.isDisabled(date, date)) {
+        this.errorMessage = PickError.AlreadyPicked;
+        this.fromDate = date;
+        return
       }
       this.errorMessage = undefined;
       this.toDate = date;
@@ -128,7 +133,7 @@ export class BookButtonComponent implements OnInit {
     );
   }
 
-  open(content: TemplateRef<any>) {
+  open(content: TemplateRef<void>) {
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
       size: 'lg',
